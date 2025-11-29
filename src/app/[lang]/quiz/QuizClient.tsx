@@ -24,7 +24,7 @@ type Dictionary = {
   };
 };
 
-export default function QuizClient({ dictionary }: { dictionary: Dictionary }) {
+export default function QuizClient({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -41,7 +41,7 @@ export default function QuizClient({ dictionary }: { dictionary: Dictionary }) {
     } else {
       // Finish quiz
       localStorage.setItem("quizResults", JSON.stringify(newAnswers));
-      router.push("/analysis");
+      router.push(`/${lang}/analysis`);
     }
   };
 

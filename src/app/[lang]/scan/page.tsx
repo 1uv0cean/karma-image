@@ -9,5 +9,5 @@ export default async function ScanPage({
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
 
-  return <ScanClient dictionary={dictionary} />;
+  return <ScanClient dictionary={dictionary} lang={lang} />;
 }

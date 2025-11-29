@@ -9,5 +9,5 @@ export default async function QuizPage({
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
 
-  return <QuizClient dictionary={dictionary} />;
+  return <QuizClient dictionary={dictionary} lang={lang} />;
 }

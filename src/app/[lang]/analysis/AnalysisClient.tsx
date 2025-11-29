@@ -26,7 +26,7 @@ export default function AnalysisClient({ dictionary, lang }: { dictionary: Dicti
         const userDesire = localStorage.getItem("userDesire") || "";
 
         if (!image) {
-          router.push("/scan");
+          router.push(`/${lang}/scan`);
           return;
         }
 
@@ -45,12 +45,12 @@ export default function AnalysisClient({ dictionary, lang }: { dictionary: Dicti
         
         // Ensure we show messages for at least a few seconds for effect
         setTimeout(() => {
-          router.push("/result");
+          router.push(`/${lang}/result`);
         }, 5000); // Minimum 5s wait
       } catch (error) {
         console.error(error);
         alert(dictionary.analysis.error);
-        router.push("/");
+        router.push(`/${lang}`);
       }
     };
 

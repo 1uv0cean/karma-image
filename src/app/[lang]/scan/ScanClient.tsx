@@ -19,7 +19,7 @@ type Dictionary = {
   };
 };
 
-export default function ScanClient({ dictionary }: { dictionary: Dictionary }) {
+export default function ScanClient({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState(false);
@@ -95,7 +95,7 @@ export default function ScanClient({ dictionary }: { dictionary: Dictionary }) {
     if (image) {
       try {
         localStorage.setItem("userImage", image);
-        router.push("/analysis");
+        router.push(`/${lang}/analysis`);
       } catch (error) {
         console.error("Storage error:", error);
         alert("저장 공간이 부족합니다. 다시 시도해주세요.");
@@ -107,7 +107,7 @@ export default function ScanClient({ dictionary }: { dictionary: Dictionary }) {
     <div className="flex min-h-screen flex-col bg-background">
       <Header
         left={
-          <Link href="/">
+          <Link href={`/${lang}`}>
             <ChevronLeft className="h-6 w-6 text-gray-600" />
           </Link>
         }

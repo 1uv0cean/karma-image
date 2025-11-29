@@ -57,7 +57,7 @@ function LandingContent({ dictionary, lang }: { dictionary: Dictionary; lang: st
   const handleStart = () => {
     if (!desire.trim()) return;
     localStorage.setItem("userDesire", desire);
-    router.push("/scan");
+    router.push(`/${lang}/scan`);
   };
 
   const switchLanguage = (newLang: string) => {

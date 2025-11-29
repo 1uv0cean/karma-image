@@ -31,6 +31,8 @@ type Dictionary = {
     copy_link_toast: string;
     share_note: string;
     share_button: string;
+    share_title: string;
+    share_text: string;
     retry_button: string;
   };
 };
@@ -110,8 +112,8 @@ export default function ResultClient({ dictionary, lang }: { dictionary: Diction
   const handleShare = async () => {
     const shareUrl = `${window.location.origin}?ref=${userId}`;
     const shareData = {
-      title: 'K-Face Reading | AI 팩트 관상',
-      text: '내 관상의 잔혹한 진실을 확인해보세요. #KFaceReading #K관상 #팩트관상',
+      title: dictionary.result.share_title,
+      text: dictionary.result.share_text,
       url: shareUrl,
     };
 

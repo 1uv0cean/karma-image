@@ -43,7 +43,7 @@ export default function ScanPage() {
             <ChevronLeft className="h-6 w-6 text-gray-600" />
           </Link>
         }
-        center="얼굴 스캔"
+        center="K-Face Reading"
       />
 
       <main className="flex flex-1 flex-col items-center px-6 pt-8 pb-10">

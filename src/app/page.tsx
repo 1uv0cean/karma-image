@@ -62,7 +62,8 @@ function LandingContent() {
 
           <div className="space-y-2">
             <h1 className="text-4xl font-bold tracking-tight text-blue-600">
-              AI 팩트 관상소
+              K-Face Reading
+              <span className="block text-2xl mt-2 text-white-800">AI 팩트 관상</span>
             </h1>
             <p className="text-lg text-gray-500 font-medium">
               당신의 얼굴에 쓰여진
@@ -116,7 +117,7 @@ function LandingContent() {
             >
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-400">
-                  당신의 고민이나 욕망을 구체적으로 적어주세요
+                  당신의 고민이나 욕망을 10자 이상 구체적으로 적어주세요
                 </label>
                 <div className="relative">
                   <textarea

@@ -82,8 +82,8 @@ export default function ResultPage() {
   const handleShare = async () => {
     const shareUrl = `${window.location.origin}?ref=${userId}`;
     const shareData = {
-      title: 'AI 팩트 관상소',
-      text: '내 관상의 잔혹한 진실을 확인해보세요. #팩트관상 #AI관상',
+      title: 'K-Face Reading | AI 팩트 관상',
+      text: '내 관상의 잔혹한 진실을 확인해보세요. #KFaceReading #K관상 #팩트관상',
       url: shareUrl,
     };
 
@@ -123,7 +123,7 @@ export default function ResultPage() {
             <ChevronLeft className="h-6 w-6 text-gray-600" />
           </Link>
         }
-        center="분석 결과"
+        center="K-Face Reading 결과"
       />
 
       <main className="flex flex-1 flex-col items-center px-6 pb-10 pt-4">

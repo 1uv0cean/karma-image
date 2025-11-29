@@ -3,12 +3,21 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey || "");
 
-export async function analyzeFaceAndSoul(imageBase64: string, quizResults: string[], userDesire: string) {
+export async function analyzeFaceAndSoul(imageBase64: string, quizResults: string[], userDesire: string, lang: string) {
   if (!apiKey) {
     throw new Error("GEMINI_API_KEY is not set");
   }
 
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+
+  const languageMap: Record<string, string> = {
+    ko: "Korean (Hangul)",
+    en: "English",
+    ja: "Japanese",
+    th: "Thai"
+  };
+
+  const targetLanguage = languageMap[lang] || "Korean (Hangul)";
 
   const prompt = `
     Analyze this face and the user's specific question/desire to perform a "Cold & Critical Fact-based Face Reading" (냉철한 팩트 관상 분석).
@@ -20,19 +29,22 @@ export async function analyzeFaceAndSoul(imageBase64: string, quizResults: strin
     1. The user has provided a specific worry or question above. Address this with COLD HARD FACTS based on their physiognomy.
     2. Do NOT sugarcoat or give vague comforting advice. Be brutally honest about their strengths and fatal weaknesses.
     3. Analyze specific facial features (eyes, nose, mouth, jaw) to back up your claims.
+    4. **CRITICAL**: The \`user_question_answer\` field MUST directly and specifically answer the user's question/desire. Do not give generic advice here.
     
-    IMPORTANT: All text fields in the JSON output MUST be in Korean (Hangul).
+    IMPORTANT: All text fields in the JSON output MUST be in ${targetLanguage}.
     
     Output JSON with the following fields:
-    - era: string (Face Score & Type: e.g., "관상 점수: 88점 / 대기만성형 리더")
-    - class: string (One Line Summary: e.g., "초년보다 말년이 빛나는 대기만성형 관상")
-    - description: string (Overall Summary: 2-3 sentences directly answering their specific question based on their face.)
-    - wealth_tier: string (e.g., "상위 10% 잠재력", "자수성가형 부자", "안정적 중산층")
-    - social_tier: string (e.g., "타고난 인싸", "신중한 전략가", "고독한 늑대")
+    - era: string (Face Score & Type: e.g., "Face Score: 88 / Late Bloomer Leader")
+    - class: string (One Line Summary: e.g., "A late bloomer whose later years shine brighter than their early ones")
+    - user_question_answer: string (Direct Answer: A specific, 3-4 sentence answer to the user's question "${userDesire}". Use physiognomy evidence.)
+    - wealth_tier: string (e.g., "Top 10% Potential", "Self-made Rich", "Stable Middle Class")
+    - social_tier: string (e.g., "Born Insider", "Cautious Strategist", "Lone Wolf")
     - personality: string (Detailed Personality Analysis: Analyze their inner character, strengths, and weaknesses based on eyes, eyebrows, and forehead. 3-4 sentences.)
     - wealth: string (Detailed Wealth Luck: Analyze nose, ears, and jawline for financial potential. 3-4 sentences.)
     - love: string (Detailed Love/Relationship Luck: Analyze eyes (tear ducts) and mouth for romantic tendencies. 3-4 sentences.)
     - advice: string (Life Advice: Practical advice to improve their luck and solve their specific problem. 2-3 sentences.)
+    
+    **CRITICAL**: Ensure 'era', 'class', 'wealth_tier', and 'social_tier' are ALSO translated into ${targetLanguage}. Do NOT output them in Korean unless the target language is Korean.
   `;
 
   // Remove data:image/jpeg;base64, prefix if present

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Fingerprint, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,7 @@ type Dictionary = {
   };
 };
 
-export default function AnalysisClient({ dictionary }: { dictionary: Dictionary }) {
+export default function AnalysisClient({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   const router = useRouter();
   const [messageIndex, setMessageIndex] = useState(0);
   const messages = dictionary.analysis.messages;
@@ -34,13 +34,14 @@ export default function AnalysisClient({ dictionary }: { dictionary: Dictionary 
         const response = await fetch("/api/analyze", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ image, quizResults, userDesire }),
+          body: JSON.stringify({ image, quizResults, userDesire, lang }),
         });
 
         if (!response.ok) throw new Error("Analysis failed");
 
         const data = await response.json();
-        localStorage.setItem("analysisResult", JSON.stringify(data));
+        const resultWithLang = { ...data, lang };
+        localStorage.setItem("analysisResult", JSON.stringify(resultWithLang));
         
         // Ensure we show messages for at least a few seconds for effect
         setTimeout(() => {
@@ -105,18 +106,6 @@ export default function AnalysisClient({ dictionary }: { dictionary: Dictionary 
       >
         {messages[messageIndex]}
       </motion.h2>
-
-      <div className="mt-8 flex gap-4 text-sm text-gray-400">
-        <div className="flex items-center gap-1">
-          <Fingerprint className="h-4 w-4" />
-          <span>Physiognomy</span>
-        </div>
-        <div className="h-4 w-px bg-gray-300" />
-        <div className="flex items-center gap-1">
-          <Brain className="h-4 w-4" />
-          <span>Karma Data</span>
-        </div>
-      </div>
     </div>
   );
 }

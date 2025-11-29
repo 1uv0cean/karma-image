@@ -4,7 +4,7 @@ import ScanClient from "./ScanClient";
 export default async function ScanPage({
   params,
 }: {
-  params: Promise<{ lang: "en" | "ko" }>;
+  params: Promise<{ lang: "en" | "ko" | "ja" | "th" }>;
 }) {
   const { lang } = await params;
   const dictionary = await getDictionary(lang);

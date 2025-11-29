@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { image, quizResults, userDesire } = body;
+    const { image, quizResults, userDesire, lang } = body;
 
     if (!image || !quizResults) {
       return NextResponse.json(
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const analysis = await analyzeFaceAndSoul(image, quizResults, userDesire || "General Fortune");
+    const analysis = await analyzeFaceAndSoul(image, quizResults, userDesire || "General Fortune", lang || "ko");
     
     // Image generation removed as per new requirements
     const generatedImage = null;

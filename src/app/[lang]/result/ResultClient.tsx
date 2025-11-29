@@ -20,6 +20,7 @@ type Dictionary = {
     wealth: string;
     love: string;
     advice: string;
+    advice_original: string;
     default_content: string;
     mission_title: string;
     mission_required: string;
@@ -34,7 +35,7 @@ type Dictionary = {
   };
 };
 
-export default function ResultClient({ dictionary }: { dictionary: Dictionary }) {
+export default function ResultClient({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   const [userImage, setUserImage] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<any>(null);
   const [shareCount, setShareCount] = useState(0);
@@ -128,6 +129,14 @@ export default function ResultClient({ dictionary }: { dictionary: Dictionary })
     }
   };
 
+  const handleReanalyze = () => {
+    localStorage.removeItem("analysisResult");
+    window.location.href = `/${lang}/analysis`;
+  };
+
+  // Check for language mismatch
+  const isLangMismatch = analysis && analysis.lang && analysis.lang !== lang;
+
   return (
     <div className="flex min-h-screen flex-col bg-background relative">
       {/* Toast Notification */}
@@ -154,6 +163,21 @@ export default function ResultClient({ dictionary }: { dictionary: Dictionary })
       />
 
       <main className="flex flex-1 flex-col items-center px-6 pb-10 pt-4">
+        {/* Language Mismatch Warning */}
+        {isLangMismatch && (
+          <div className="mb-6 w-full max-w-sm rounded-xl bg-yellow-50 p-4 border border-yellow-200 text-center">
+            <p className="text-sm text-yellow-800 mb-2">
+              The analysis result is in a different language.
+            </p>
+            <Button 
+              size="small" 
+              onClick={handleReanalyze}
+              className="bg-yellow-600 hover:bg-yellow-700 text-white text-xs"
+            >
+              Re-analyze in {lang === 'ko' ? 'Korean' : lang === 'en' ? 'English' : lang === 'ja' ? 'Japanese' : 'Thai'}
+            </Button>
+          </div>
+        )}
         {/* Result Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -188,6 +212,7 @@ export default function ResultClient({ dictionary }: { dictionary: Dictionary })
 
           {/* Analysis Content */}
           <div className="p-6 space-y-6">
+
             {/* Tiers (Always Visible) */}
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
@@ -203,14 +228,30 @@ export default function ResultClient({ dictionary }: { dictionary: Dictionary })
             {/* Detailed Analysis (Locked/Unlocked) */}
             <div className="relative">
               {!isUnlocked && (
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200">
-                  <Lock className="h-8 w-8 text-gray-400 mb-2" />
-                  <p className="text-sm font-bold text-gray-600">{dictionary.result.locked_title}</p>
-                  <p className="text-xs text-gray-400 mt-1">{dictionary.result.locked_desc}</p>
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-xl bg-gradient-to-b from-white/60 via-white/95 to-white">
+                  <div className="flex flex-col items-center p-6 text-center">
+                    <Lock className="h-8 w-8 text-gray-400 mb-2" />
+                    <p className="text-sm font-bold text-gray-600">{dictionary.result.locked_title}</p>
+                    <p className="text-xs text-gray-400 mt-1">{dictionary.result.locked_desc}</p>
+                  </div>
                 </div>
               )}
               
-              <div className={`space-y-4 ${!isUnlocked ? 'blur-sm select-none' : ''}`}>
+              <div className={`space-y-4 ${!isUnlocked ? 'select-none' : ''}`}>
+                {/* User Question Answer (Priority) - Now Locked */}
+                <div className="rounded-2xl bg-blue-50 p-6 border border-blue-100 shadow-sm">
+                  <h3 className="font-bold text-blue-900 text-lg mb-2 flex items-center gap-2">
+                    <span>🔮</span> {dictionary.result.advice}
+                  </h3>
+                  <p className="text-base text-blue-900 leading-relaxed font-medium">
+                    {/* Show full text if unlocked, otherwise show teaser (first 2 sentences) */}
+                    {isUnlocked 
+                      ? (analysis?.user_question_answer || analysis?.description || dictionary.result.default_content)
+                      : (analysis?.user_question_answer || analysis?.description || dictionary.result.default_content).slice(0, 60) + "..."
+                    }
+                  </p>
+                </div>
+
                 <div className="space-y-2">
                   <h4 className="font-bold text-gray-900 flex items-center gap-2">
                     <span>🧠</span> {dictionary.result.personality}
@@ -240,7 +281,7 @@ export default function ResultClient({ dictionary }: { dictionary: Dictionary })
 
                 <div className="rounded-xl bg-blue-50 p-4 border border-blue-100">
                   <h4 className="font-bold text-blue-900 flex items-center gap-2 mb-2">
-                    <span>💡</span> {dictionary.result.advice}
+                    <span>💡</span> {dictionary.result.advice_original}
                   </h4>
                   <p className="text-sm text-blue-800 leading-relaxed font-medium">
                     {analysis?.advice || dictionary.result.default_content}

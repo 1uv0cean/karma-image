@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: "en" | "ko" | "ja" | "th" }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dictionary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang as "en" | "ko" | "ja" | "th");
 
   return {
     metadataBase: new URL("https://k-face-reading.com"),
@@ -53,10 +53,10 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: "en" | "ko" | "ja" | "th" }>;
+  params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
-  const dictionary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang as "en" | "ko" | "ja" | "th");
   
   const jsonLd = {
     "@context": "https://schema.org",

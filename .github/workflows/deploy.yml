@@ -1,0 +1,102 @@
+name: Karma Image Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Package Build Files
+        run: |
+          tar -czf build.tar.gz \
+            --exclude='.next/cache' \
+            --exclude='node_modules' \
+            .next \
+            public \
+            package.json \
+            package-lock.json \
+            next.config.ts
+
+      - name: Setup SSH Key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > private_key.pem
+          chmod 600 private_key.pem
+
+      - name: Deploy to EC2
+        run: |
+          # Upload Build
+          scp -i private_key.pem -o StrictHostKeyChecking=no build.tar.gz ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/tmp/build.tar.gz
+          
+          # Execute Deployment on Server
+          ssh -i private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            # Setup Directory
+            sudo mkdir -p /var/www/karma-image
+            sudo chown $USER:$USER /var/www/karma-image
+            cd /var/www/karma-image
+
+            # Backup Current
+            if [ -d "current" ]; then
+              rm -rf backup
+              cp -r current backup
+            fi
+
+            # Prepare New Version
+            rm -rf new_version
+            mkdir new_version
+            tar -xzf /tmp/build.tar.gz -C new_version
+            rm /tmp/build.tar.gz
+
+            # Install Dependencies
+            cd new_version
+            
+            # Load NVM (if applicable)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            npm ci --production
+
+            # Create .env.local
+            echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env.local
+            echo "NODE_ENV=production" >> .env.local
+            echo "PORT=3000" >> .env.local
+
+            # Switch Version
+            cd ..
+            rm -rf current
+            mv new_version current
+            
+            # Restart PM2
+            cd current
+            pm2 delete karma-image 2>/dev/null || true
+            pm2 start npm --name "karma-image" -- start
+            pm2 save
+            
+            echo "🚀 Deployment Complete!"
+          EOF
+
+      - name: Cleanup
+        if: always()
+        run: rm -f private_key.pem build.tar.gz

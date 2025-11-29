@@ -9,5 +9,5 @@ export default async function LandingPage({
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
 
-  return <LandingClient dictionary={dictionary} />;
+  return <LandingClient dictionary={dictionary} lang={lang} />;
 }

@@ -22,13 +22,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: "en
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
     keywords: dictionary.metadata.keywords.split(", "),
+    alternates: {
+      canonical: `https://k-face-reading.com/${lang}`,
+      languages: {
+        'en': 'https://k-face-reading.com/en',
+        'ko': 'https://k-face-reading.com/ko',
+        'ja': 'https://k-face-reading.com/ja',
+        'th': 'https://k-face-reading.com/th',
+        'x-default': 'https://k-face-reading.com',
+      },
+    },
     openGraph: {
       title: dictionary.metadata.title,
       description: dictionary.metadata.description,
       type: "website",
       locale: lang === "ko" ? "ko_KR" : lang === "ja" ? "ja_JP" : lang === "th" ? "th_TH" : "en_US",
       siteName: "K-Face Reading",
-      url: "https://k-face-reading.com",
+      url: `https://k-face-reading.com/${lang}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -46,6 +56,7 @@ export default async function RootLayout({
   params: Promise<{ lang: "en" | "ko" | "ja" | "th" }>;
 }>) {
   const { lang } = await params;
+  const dictionary = await getDictionary(lang);
   
   const jsonLd = {
     "@context": "https://schema.org",
@@ -58,7 +69,7 @@ export default async function RootLayout({
       "price": "0",
       "priceCurrency": "KRW"
     },
-    "description": "AI가 분석하는 냉철한 팩트 관상 서비스. 얼굴 분석을 통해 운명과 성격을 파악합니다.",
+    "description": dictionary.metadata.description,
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",

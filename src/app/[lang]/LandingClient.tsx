@@ -2,7 +2,8 @@
 
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Globe } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
@@ -26,11 +27,12 @@ type Dictionary = {
   };
 };
 
-function LandingContent({ dictionary }: { dictionary: Dictionary }) {
+function LandingContent({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [desire, setDesire] = useState("");
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   useEffect(() => {
     // 1. Generate/Get Visitor ID
@@ -58,8 +60,55 @@ function LandingContent({ dictionary }: { dictionary: Dictionary }) {
     router.push("/scan");
   };
 
+  const switchLanguage = (newLang: string) => {
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.replace(`/${lang}`, `/${newLang}`);
+    window.location.href = newPath;
+  };
+
+  const languages = [
+    { code: 'ko', label: '한국어', flag: '🇰🇷' },
+    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'ja', label: '日本語', flag: '🇯🇵' },
+    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
+  ];
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-center relative">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4 z-50">
+        <button
+          onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+          className="p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
+        >
+          <Globe className="w-5 h-5" />
+        </button>
+
+        <AnimatePresence>
+          {isLangMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              className="absolute right-0 mt-2 w-32 rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden"
+            >
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => switchLanguage(l.code)}
+                  className={`w-full px-4 py-2 text-left text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors ${
+                    lang === l.code ? 'font-bold text-blue-600 bg-blue-50' : 'text-gray-600'
+                  }`}
+                >
+                  <span>{l.flag}</span>
+                  <span>{l.label}</span>
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
       {/* Background Elements - Fixed to avoid scrollbars but allow content to scroll if needed */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] h-[500px] w-[500px] rounded-full bg-blue-200/30 blur-3xl filter" />
@@ -75,8 +124,14 @@ function LandingContent({ dictionary }: { dictionary: Dictionary }) {
         >
           <div className="relative mx-auto h-32 w-32">
             <div className="absolute inset-0 animate-pulse rounded-full bg-red-500/20 blur-xl" />
-            <div className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-gray-900 to-black shadow-2xl border-2 border-red-500/30">
-              <span className="text-5xl">🔥</span>
+            <div className="relative flex h-full w-full items-center justify-center ">
+              <img
+                src="/k-face.png"
+                alt="K-Face Logo"
+                width={128}
+                height={128}
+                className="w-full h-full"
+              />
             </div>
           </div>
 
@@ -172,10 +227,10 @@ function LandingContent({ dictionary }: { dictionary: Dictionary }) {
   );
 }
 
-export default function LandingClient({ dictionary }: { dictionary: Dictionary }) {
+export default function LandingClient({ dictionary, lang }: { dictionary: Dictionary; lang: string }) {
   return (
     <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-white">Loading...</div>}>
-      <LandingContent dictionary={dictionary} />
+      <LandingContent dictionary={dictionary} lang={lang} />
     </Suspense>
   );
 }

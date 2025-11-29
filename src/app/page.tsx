@@ -4,9 +4,9 @@ import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function LandingPage() {
+function LandingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +37,7 @@ export default function LandingPage() {
     localStorage.setItem("userDesire", desire);
     router.push("/scan");
   };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background text-center relative">
       {/* Background Elements - Fixed to avoid scrollbars but allow content to scroll if needed */}
@@ -149,5 +150,13 @@ export default function LandingPage() {
             </motion.div>
       </BottomSheet>
     </div>
+  );
+}
+
+export default function LandingPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-white">Loading...</div>}>
+      <LandingContent />
+    </Suspense>
   );
 }

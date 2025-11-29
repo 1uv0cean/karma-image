@@ -9,7 +9,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
-export default function ScanPage() {
+type Dictionary = {
+  scan: {
+    title: string;
+    subtitle: string;
+    upload_text: string;
+    cta_disabled: string;
+    cta_enabled: string;
+    disclaimer: string;
+  };
+};
+
+export default function ScanClient({ dictionary }: { dictionary: Dictionary }) {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -53,12 +64,10 @@ export default function ScanPage() {
           className="mb-8 text-center"
         >
           <h1 className="text-2xl font-bold text-white-900">
-            진실을 마주할 준비가 되셨나요?
+            {dictionary.scan.title}
           </h1>
           <p className="mt-2 text-gray-500">
-            AI가 당신의 이목구비 속에 숨겨진
-            <br />
-            <span className="text-red-500 font-bold">욕망의 흔적</span>을 찾아냅니다.
+            {dictionary.scan.subtitle}
           </p>
         </motion.div>
 
@@ -83,7 +92,7 @@ export default function ScanPage() {
                 <Camera className="h-10 w-10 text-primary" />
               </div>
               <span className="text-sm font-medium">
-                터치하여 사진 업로드
+                {dictionary.scan.upload_text}
               </span>
             </div>
           )}
@@ -122,11 +131,11 @@ export default function ScanPage() {
             onClick={handleNext}
             className="shadow-lg shadow-blue-500/20"
           >
-            {image ? "내 안의 또 다른 나 만나기" : "사진을 선택해주세요"}
+            {image ? dictionary.scan.cta_enabled : dictionary.scan.cta_disabled}
           </Button>
           
           <p className="text-center text-xs text-gray-400">
-            사진은 분석 후 즉시 영구 삭제됩니다.
+            {dictionary.scan.disclaimer}
           </p>
         </div>
       </main>

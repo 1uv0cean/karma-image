@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "title": "K-Face Reading | AI 팩트 관상 분석 (Korean Physiognomy)",
+    "description": "AI가 분석하는 소름돋는 팩트 관상. 당신의 얼굴에 숨겨진 운명과 진실을 마주하세요. 300자 구체적 고민 상담과 냉철한 조언.",
+    "keywords": "관상, AI관상, 얼굴분석, 운세, 사주, K-Face Reading, Physiognomy, Korean Fortune Telling, 팩트폭격"
+  },
+  "home": {
+    "title": "K-Face Reading",
+    "subtitle": "AI 팩트 관상",
+    "description": "당신의 얼굴에 쓰여진 잔혹한 진실. 지금 바로 확인하세요.",
+    "cta": "분석 시작하기",
+    "question_wealth": "\"나의 재물운은 어떨까?\"",
+    "question_personality": "\"나의 타고난 성향은 무엇일까?\"",
+    "feature_desc_1": "AI가 관상학과 심리학을 기반으로",
+    "feature_desc_2": "객관적인 팩트만 전달합니다.",
+    "scientific_note": "*과학적인 분석을 지향합니다.",
+    "participants_count": "이미 32,402명이 팩폭을 당했습니다.",
+    "modal_title": "무엇을 알고 싶으신가요?",
+    "input_label": "당신의 고민이나 욕망을 10자 이상 구체적으로 적어주세요",
+    "input_placeholder": "예: 저는 30대 초반 직장인인데, 언제쯤 경제적 자유를 얻을 수 있을까요? 그리고 제 인연은 언제 나타날까요? 구체적으로 알고 싶습니다.",
+    "input_hint": "*구체적으로 적을수록 AI가 더 정확하게 분석합니다.",
+    "start_button": "무료로 관상 분석하기"
+  },
+  "scan": {
+    "title": "진실을 마주할 준비가 되셨나요?",
+    "subtitle": "AI가 당신의 이목구비 속에 숨겨진 욕망의 흔적을 찾아냅니다.",
+    "upload_text": "터치하여 사진 업로드",
+    "cta_disabled": "사진을 선택해주세요",
+    "cta_enabled": "내 안의 또 다른 나 만나기",
+    "disclaimer": "사진은 분석 후 즉시 영구 삭제됩니다."
+  },
+  "analysis": {
+    "messages": [
+      "당신의 고민을 깊이 있게 분석하고 있습니다...",
+      "이목구비에 담긴 운명의 흔적을 스캔 중입니다...",
+      "관상학적 데이터와 당신의 질문을 대조하고 있습니다...",
+      "당신의 잠재력과 미래를 계산하는 중...",
+      "곧, 당신을 위한 진실된 조언이 공개됩니다."
+    ],
+    "error": "분석 중 오류가 발생했습니다. 다시 시도해주세요."
+  },
+  "result": {
+    "header": "K-Face Reading 결과",
+    "analyzing": "분석 중...",
+    "calculating_score": "점수 계산 중...",
+    "wealth_level": "재물 레벨",
+    "social_level": "사회성 레벨",
+    "locked_title": "상세 분석 내용이 봉인되었습니다",
+    "locked_desc": "친구 3명을 초대하여 확인하세요",
+    "personality": "성격과 기질",
+    "wealth": "재물운 분석",
+    "love": "연애와 애정",
+    "advice": "개운 조언",
+    "default_content": "분석 내용이 여기에 표시됩니다.",
+    "mission_title": "친구 초대 미션",
+    "mission_required": "필수",
+    "mission_desc": "친구 3명이 내 공유 링크를 통해 들어오면<br/>모든 결과가 즉시 해제됩니다.",
+    "current_achievement": "현재 달성",
+    "people": "명",
+    "copy_link": "친구 초대 링크 복사하기",
+    "copy_link_toast": "초대 링크가 복사되었습니다!",
+    "share_note": "*친구가 링크를 클릭하면 자동으로 카운트됩니다.",
+    "share_button": "공유하기",
+    "retry_button": "다시 하기"
+  },
+  "quiz": {
+    "header": "관상 테스트",
+    "questions": [
+      {
+        "id": 1,
+        "question": "중요한 결정을 내릴 때 당신의 방식은?",
+        "options": [
+          { "text": "철저한 분석과 데이터에 의존한다", "value": "logical" },
+          { "text": "직관과 느낌을 믿고 따른다", "value": "intuitive" },
+          { "text": "주변 사람들의 조언을 구한다", "value": "social" },
+          { "text": "일단 저지르고 수습한다", "value": "impulsive" }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "당신이 가장 중요하게 생각하는 가치는?",
+        "options": [
+          { "text": "경제적 자유와 부", "value": "wealth" },
+          { "text": "사회적 지위와 명예", "value": "honor" },
+          { "text": "가족과 연인의 행복", "value": "love" },
+          { "text": "나만의 시간과 자아실현", "value": "self" }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "스트레스를 받을 때 당신의 반응은?",
+        "options": [
+          { "text": "혼자만의 시간을 가지며 삭힌다", "value": "introvert" },
+          { "text": "친구들을 만나 수다로 푼다", "value": "extrovert" },
+          { "text": "운동이나 활동으로 해소한다", "value": "active" },
+          { "text": "쇼핑이나 맛있는 것으로 푼다", "value": "consumer" }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "낯선 사람을 만났을 때 당신은?",
+        "options": [
+          { "text": "먼저 다가가 말을 건다", "value": "outgoing" },
+          { "text": "상대가 말을 걸 때까지 기다린다", "value": "passive" },
+          { "text": "경계하며 관찰한다", "value": "cautious" },
+          { "text": "분위기에 맞춰 적당히 어울린다", "value": "adaptable" }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "당신의 소비 습관은?",
+        "options": [
+          { "text": "미래를 위해 철저히 저축한다", "value": "saver" },
+          { "text": "현재의 즐거움을 위해 쓴다", "value": "spender" },
+          { "text": "가성비를 꼼꼼히 따진다", "value": "pragmatic" },
+          { "text": "기분파라 충동구매가 잦다", "value": "emotional" }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "갈등 상황에서 당신의 태도는?",
+        "options": [
+          { "text": "논리적으로 따져서 해결한다", "value": "confrontational" },
+          { "text": "일단 피하고 본다", "value": "avoidant" },
+          { "text": "상대방의 기분을 맞춰준다", "value": "accommodating" },
+          { "text": "제3자의 중재를 요청한다", "value": "mediator" }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "당신이 꿈꾸는 이상적인 미래는?",
+        "options": [
+          { "text": "누구에게도 간섭받지 않는 자유로운 삶", "value": "freedom" },
+          { "text": "많은 사람들에게 존경받는 삶", "value": "respect" },
+          { "text": "사랑하는 사람들과 함께하는 평온한 삶", "value": "peace" },
+          { "text": "세상을 바꾸는 영향력 있는 삶", "value": "impact" }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "일을 할 때 당신의 스타일은?",
+        "options": [
+          { "text": "계획대로 꼼꼼하게 처리한다", "value": "planner" },
+          { "text": "그때그때 유연하게 대처한다", "value": "flexible" },
+          { "text": "리더가 되어 팀을 이끈다", "value": "leader" },
+          { "text": "묵묵히 내 할 일만 한다", "value": "follower" }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "당신이 가장 두려워하는 것은?",
+        "options": [
+          { "text": "실패하여 가진 것을 잃는 것", "value": "loss" },
+          { "text": "사람들에게 비난받는 것", "value": "criticism" },
+          { "text": "혼자가 되는 것", "value": "isolation" },
+          { "text": "변화 없이 정체되는 것", "value": "stagnation" }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "이 테스트를 통해 알고 싶은 것은?",
+        "options": [
+          { "text": "나의 타고난 운명과 재물운", "value": "fate" },
+          { "text": "나의 성격적 장단점과 보완점", "value": "personality" },
+          { "text": "나의 연애 성향과 잘 맞는 사람", "value": "compatibility" },
+          { "text": "앞으로 조심해야 할 점", "value": "advice" }
+        ]
+      }
+    ]
+  }
+}

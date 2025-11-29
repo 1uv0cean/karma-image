@@ -7,7 +7,34 @@ import { ChevronLeft, Lock, Share2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function ResultPage() {
+type Dictionary = {
+  result: {
+    header: string;
+    analyzing: string;
+    calculating_score: string;
+    wealth_level: string;
+    social_level: string;
+    locked_title: string;
+    locked_desc: string;
+    personality: string;
+    wealth: string;
+    love: string;
+    advice: string;
+    default_content: string;
+    mission_title: string;
+    mission_required: string;
+    mission_desc: string;
+    current_achievement: string;
+    people: string;
+    copy_link: string;
+    copy_link_toast: string;
+    share_note: string;
+    share_button: string;
+    retry_button: string;
+  };
+};
+
+export default function ResultClient({ dictionary }: { dictionary: Dictionary }) {
   const [userImage, setUserImage] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<any>(null);
   const [shareCount, setShareCount] = useState(0);
@@ -92,7 +119,7 @@ export default function ResultPage() {
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(shareUrl);
-        showToastMsg('초대 링크가 복사되었습니다!');
+        showToastMsg(dictionary.result.copy_link_toast);
       }
     } catch (err: any) {
       if (err.name !== 'AbortError') {
@@ -123,7 +150,7 @@ export default function ResultPage() {
             <ChevronLeft className="h-6 w-6 text-gray-600" />
           </Link>
         }
-        center="K-Face Reading 결과"
+        center={dictionary.result.header}
       />
 
       <main className="flex flex-1 flex-col items-center px-6 pb-10 pt-4">
@@ -147,11 +174,11 @@ export default function ResultPage() {
             <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
               <div className="mb-2 flex items-center gap-2">
                 <span className="rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold text-blue-300 border border-blue-500/30">
-                  {analysis?.class || "분석 중..."}
+                  {analysis?.class || dictionary.result.analyzing}
                 </span>
               </div>
               <h1 className="text-3xl font-bold mb-1">
-                {analysis?.era ? analysis.era.split('/')[0] : "점수 계산 중..."}
+                {analysis?.era ? analysis.era.split('/')[0] : dictionary.result.calculating_score}
               </h1>
               <p className="text-sm text-gray-300">
                 {analysis?.era ? analysis.era.split('/')[1] : ""}
@@ -164,11 +191,11 @@ export default function ResultPage() {
             {/* Tiers (Always Visible) */}
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
-                <span className="block text-xs text-gray-500 mb-1">재물 레벨</span>
+                <span className="block text-xs text-gray-500 mb-1">{dictionary.result.wealth_level}</span>
                 <span className="font-bold text-gray-900 text-lg">{analysis?.wealth_tier || "..."}</span>
               </div>
               <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
-                <span className="block text-xs text-gray-500 mb-1">사회성 레벨</span>
+                <span className="block text-xs text-gray-500 mb-1">{dictionary.result.social_level}</span>
                 <span className="font-bold text-gray-900 text-lg">{analysis?.social_tier || "..."}</span>
               </div>
             </div>
@@ -178,45 +205,45 @@ export default function ResultPage() {
               {!isUnlocked && (
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200">
                   <Lock className="h-8 w-8 text-gray-400 mb-2" />
-                  <p className="text-sm font-bold text-gray-600">상세 분석 내용이 봉인되었습니다</p>
-                  <p className="text-xs text-gray-400 mt-1">친구 3명을 초대하여 확인하세요</p>
+                  <p className="text-sm font-bold text-gray-600">{dictionary.result.locked_title}</p>
+                  <p className="text-xs text-gray-400 mt-1">{dictionary.result.locked_desc}</p>
                 </div>
               )}
               
               <div className={`space-y-4 ${!isUnlocked ? 'blur-sm select-none' : ''}`}>
                 <div className="space-y-2">
                   <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                    <span>🧠</span> 성격과 기질
+                    <span>🧠</span> {dictionary.result.personality}
                   </h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    {analysis?.personality || "분석 내용이 여기에 표시됩니다."}
+                    {analysis?.personality || dictionary.result.default_content}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
                   <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                    <span>💰</span> 재물운 분석
+                    <span>💰</span> {dictionary.result.wealth}
                   </h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    {analysis?.wealth || "분석 내용이 여기에 표시됩니다."}
+                    {analysis?.wealth || dictionary.result.default_content}
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                    <span>💘</span> 연애와 애정
+                    <span>💘</span> {dictionary.result.love}
                   </h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    {analysis?.love || "분석 내용이 여기에 표시됩니다."}
+                    {analysis?.love || dictionary.result.default_content}
                   </p>
                 </div>
 
                 <div className="rounded-xl bg-blue-50 p-4 border border-blue-100">
                   <h4 className="font-bold text-blue-900 flex items-center gap-2 mb-2">
-                    <span>💡</span> 개운 조언
+                    <span>💡</span> {dictionary.result.advice}
                   </h4>
                   <p className="text-sm text-blue-800 leading-relaxed font-medium">
-                    {analysis?.advice || "분석 내용이 여기에 표시됩니다."}
+                    {analysis?.advice || dictionary.result.default_content}
                   </p>
                 </div>
               </div>
@@ -232,13 +259,10 @@ export default function ResultPage() {
             <>
               <div className="rounded-xl bg-gray-900 p-4 text-white mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold">친구 초대 미션</span>
-                  <span className="text-xs bg-red-600 px-2 py-0.5 rounded-full">필수</span>
+                  <span className="text-sm font-bold">{dictionary.result.mission_title}</span>
+                  <span className="text-xs bg-red-600 px-2 py-0.5 rounded-full">{dictionary.result.mission_required}</span>
                 </div>
-                <p className="text-xs text-gray-300 mb-3">
-                  친구 3명이 내 공유 링크를 통해 들어오면<br/>
-                  <span className="text-red-400 font-bold">모든 결과가 즉시 해제</span>됩니다.
-                </p>
+                <p className="text-xs text-gray-300 mb-3" dangerouslySetInnerHTML={{ __html: dictionary.result.mission_desc }} />
                 
                 {/* Progress Bar */}
                 <div className="w-full bg-gray-700 rounded-full h-2 mb-1">
@@ -248,8 +272,8 @@ export default function ResultPage() {
                   />
                 </div>
                 <div className="flex justify-between text-xs text-gray-400">
-                  <span>현재 달성</span>
-                  <span>{shareCount}/3 명</span>
+                  <span>{dictionary.result.current_achievement}</span>
+                  <span>{shareCount}/3 {dictionary.result.people}</span>
                 </div>
               </div>
 
@@ -260,11 +284,11 @@ export default function ResultPage() {
                 onClick={handleShare}
               >
                 <Share2 className="mr-2 h-4 w-4" />
-                친구 초대 링크 복사하기
+                {dictionary.result.copy_link}
               </Button>
               
               <p className="text-center text-xs text-gray-400 mt-2">
-                *친구가 링크를 클릭하면 자동으로 카운트됩니다.
+                {dictionary.result.share_note}
               </p>
             </>
           ) : (
@@ -277,7 +301,7 @@ export default function ResultPage() {
                   onClick={handleShare}
                 >
                   <Share2 className="mr-2 h-4 w-4" />
-                  공유하기
+                  {dictionary.result.share_button}
                 </Button>
               </div>
               <Button
@@ -293,7 +317,7 @@ export default function ResultPage() {
                   window.location.href = "/";
                 }}
               >
-                다시 하기
+                {dictionary.result.retry_button}
               </Button>
             </>
           )}

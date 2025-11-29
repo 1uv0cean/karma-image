@@ -5,17 +5,17 @@ import { Brain, Fingerprint, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const messages = [
-  "당신의 고민을 깊이 있게 분석하고 있습니다...",
-  "이목구비에 담긴 운명의 흔적을 스캔 중입니다...",
-  "관상학적 데이터와 당신의 질문을 대조하고 있습니다...",
-  "당신의 잠재력과 미래를 계산하는 중...",
-  "곧, 당신을 위한 진실된 조언이 공개됩니다.",
-];
+type Dictionary = {
+  analysis: {
+    messages: string[];
+    error: string;
+  };
+};
 
-export default function AnalysisPage() {
+export default function AnalysisClient({ dictionary }: { dictionary: Dictionary }) {
   const router = useRouter();
   const [messageIndex, setMessageIndex] = useState(0);
+  const messages = dictionary.analysis.messages;
 
   useEffect(() => {
     const analyze = async () => {
@@ -48,7 +48,7 @@ export default function AnalysisPage() {
         }, 5000); // Minimum 5s wait
       } catch (error) {
         console.error(error);
-        alert("분석 중 오류가 발생했습니다. 다시 시도해주세요.");
+        alert(dictionary.analysis.error);
         router.push("/");
       }
     };
@@ -64,7 +64,7 @@ export default function AnalysisPage() {
     analyze();
 
     return () => clearInterval(interval);
-  }, [router]);
+  }, [router, messages, dictionary.analysis.error]);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center">

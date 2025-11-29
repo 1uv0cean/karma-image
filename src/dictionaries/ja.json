@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "title": "K-Face Reading | AI ファクト観相分析 (Korean Physiognomy)",
+    "description": "AIが分析する鳥肌が立つようなファクト観相。あなたの顔に隠された運命と真実に向き合ってください。300文字の具体的な悩み相談と冷徹なアドバイス。",
+    "keywords": "観相, AI観相, 顔分析, 運勢, 四柱推命, K-Face Reading, Physiognomy, Korean Fortune Telling, ファクト暴力"
+  },
+  "home": {
+    "title": "K-Face Reading",
+    "subtitle": "AI ファクト観相",
+    "description": "あなたの顔に書かれた残酷な真実。今すぐ確認してください。",
+    "cta": "分析を始める",
+    "question_wealth": "「私の財運はどうだろう？」",
+    "question_personality": "「私の生まれ持った性質は何だろう？」",
+    "feature_desc_1": "AIが観相学と心理学に基づいて",
+    "feature_desc_2": "客観的な事実だけを伝えます。",
+    "scientific_note": "*科学的な分析を目指します。",
+    "participants_count": "すでに32,402人がファクト暴力を受けました。",
+    "modal_title": "何を知りたいですか？",
+    "input_label": "あなたの悩みや欲望を10文字以上具体的に書いてください",
+    "input_placeholder": "例：私は30代前半の会社員ですが、いつ頃経済的自由を得られるでしょうか？そして私の縁はいつ現れるでしょうか？具体的に知りたいです。",
+    "input_hint": "*具体的に書くほどAIがより正確に分析します。",
+    "start_button": "無料で観相分析する"
+  },
+  "scan": {
+    "title": "真実に向き合う準備はできましたか？",
+    "subtitle": "AIがあなたの目鼻立ちの中に隠された欲望の痕跡を見つけ出します。",
+    "upload_text": "タッチして写真をアップロード",
+    "cta_disabled": "写真を選択してください",
+    "cta_enabled": "私の中のもう一人の私に会う",
+    "disclaimer": "写真は分析後、即座に永久削除されます。"
+  },
+  "analysis": {
+    "messages": [
+      "あなたの悩みを深く分析しています...",
+      "目鼻立ちに込められた運命の痕跡をスキャン中です...",
+      "観相学的データとあなたの質問を照合しています...",
+      "あなたの潜在能力と未来を計算中...",
+      "まもなく、あなたのための真実のアドバイスが公開されます。"
+    ],
+    "error": "分析中にエラーが発生しました。もう一度お試しください。"
+  },
+  "result": {
+    "header": "K-Face Reading 結果",
+    "analyzing": "分析中...",
+    "calculating_score": "スコア計算中...",
+    "wealth_level": "財運レベル",
+    "social_level": "社会性レベル",
+    "locked_title": "詳細分析内容が封印されました",
+    "locked_desc": "友達3人を招待して確認してください",
+    "personality": "性格と気質",
+    "wealth": "財運分析",
+    "love": "恋愛と愛情",
+    "advice": "開運アドバイス",
+    "default_content": "分析内容がここに表示されます。",
+    "mission_title": "友達招待ミッション",
+    "mission_required": "必須",
+    "mission_desc": "友達3人があなたの共有リンクを通じて入ってくると<br/>すべての結果が即座に解除されます。",
+    "current_achievement": "現在の達成",
+    "people": "名",
+    "copy_link": "招待リンクをコピー",
+    "copy_link_toast": "招待リンクがコピーされました！",
+    "share_note": "*友達がリンクをクリックすると自動的にカウントされます。",
+    "share_button": "共有する",
+    "retry_button": "もう一度やる"
+  },
+  "quiz": {
+    "header": "観相テスト",
+    "questions": [
+      {
+        "id": 1,
+        "question": "重要な決定を下す時のあなたの方式は？",
+        "options": [
+          { "text": "徹底的な分析とデータに依存する", "value": "logical" },
+          { "text": "直感と感覚を信じて従う", "value": "intuitive" },
+          { "text": "周りの人々の助言を求める", "value": "social" },
+          { "text": "とりあえずやってみて収拾する", "value": "impulsive" }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "あなたが最も重要だと考える価値は？",
+        "options": [
+          { "text": "経済的自由と富", "value": "wealth" },
+          { "text": "社会的地位と名誉", "value": "honor" },
+          { "text": "家族と恋人の幸せ", "value": "love" },
+          { "text": "自分だけの時間と自己実現", "value": "self" }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "ストレスを受ける時のあなたの反応は？",
+        "options": [
+          { "text": "一人だけの時間を持って解消する", "value": "introvert" },
+          { "text": "友達に会っておしゃべりで解く", "value": "extrovert" },
+          { "text": "運動や活動で解消する", "value": "active" },
+          { "text": "買い物や美味しいもので解く", "value": "consumer" }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "見知らぬ人に会った時、あなたは？",
+        "options": [
+          { "text": "先に近づいて話しかける", "value": "outgoing" },
+          { "text": "相手が話しかけるまで待つ", "value": "passive" },
+          { "text": "警戒しながら観察する", "value": "cautious" },
+          { "text": "雰囲気に合わせて適当に付き合う", "value": "adaptable" }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "あなたの消費習慣は？",
+        "options": [
+          { "text": "未来のために徹底的に貯蓄する", "value": "saver" },
+          { "text": "現在の楽しみのために使う", "value": "spender" },
+          { "text": "コスパを几帳面に計算する", "value": "pragmatic" },
+          { "text": "気分屋で衝動買いが多い", "value": "emotional" }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "葛藤状況でのあなたの態度は？",
+        "options": [
+          { "text": "論理的に問い詰めて解決する", "value": "confrontational" },
+          { "text": "とりあえず避けてみる", "value": "avoidant" },
+          { "text": "相手の気分に合わせてあげる", "value": "accommodating" },
+          { "text": "第三者の仲裁を要請する", "value": "mediator" }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "あなたが夢見る理想的な未来は？",
+        "options": [
+          { "text": "誰にも干渉されない自由な人生", "value": "freedom" },
+          { "text": "多くの人々に尊敬される人生", "value": "respect" },
+          { "text": "愛する人々と共にする平穏な人生", "value": "peace" },
+          { "text": "世の中を変える影響力のある人生", "value": "impact" }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "仕事をする時のあなたのスタイルは？",
+        "options": [
+          { "text": "計画通り几帳面に処理する", "value": "planner" },
+          { "text": "その時々で柔軟に対処する", "value": "flexible" },
+          { "text": "リーダーになってチームを率いる", "value": "leader" },
+          { "text": "黙々と自分のやるべきことだけをする", "value": "follower" }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "あなたが最も恐れることは？",
+        "options": [
+          { "text": "失敗して持っているものを失うこと", "value": "loss" },
+          { "text": "人々に非難されること", "value": "criticism" },
+          { "text": "一人になること", "value": "isolation" },
+          { "text": "変化なく停滞すること", "value": "stagnation" }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "このテストを通じて知りたいことは？",
+        "options": [
+          { "text": "私の生まれ持った運命と財運", "value": "fate" },
+          { "text": "私の性格的長所短所と補完点", "value": "personality" },
+          { "text": "私の恋愛傾向と相性の良い人", "value": "compatibility" },
+          { "text": "これから気をつけるべき点", "value": "advice" }
+        ]
+      }
+    ]
+  }
+}

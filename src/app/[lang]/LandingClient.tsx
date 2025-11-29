@@ -6,7 +6,27 @@ import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-function LandingContent() {
+type Dictionary = {
+  home: {
+    title: string;
+    subtitle: string;
+    description: string;
+    cta: string;
+    question_wealth: string;
+    question_personality: string;
+    feature_desc_1: string;
+    feature_desc_2: string;
+    scientific_note: string;
+    participants_count: string;
+    modal_title: string;
+    input_label: string;
+    input_placeholder: string;
+    input_hint: string;
+    start_button: string;
+  };
+};
+
+function LandingContent({ dictionary }: { dictionary: Dictionary }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -62,29 +82,27 @@ function LandingContent() {
 
           <div className="space-y-2">
             <h1 className="text-4xl font-bold tracking-tight text-blue-600">
-              K-Face Reading
-              <span className="block text-2xl mt-2 text-white-800">AI 팩트 관상</span>
+              {dictionary.home.title}
+              <span className="block text-2xl mt-2 text-white-800">{dictionary.home.subtitle}</span>
             </h1>
             <p className="text-lg text-gray-500 font-medium">
-              당신의 얼굴에 쓰여진
-              <br />
-              <span className="text-blue-600 font-bold">운명과 진실</span>을 분석합니다.
+              {dictionary.home.description}
             </p>
           </div>
 
           <div className="rounded-2xl bg-gray-50 p-6 text-sm text-gray-600 shadow-inner">
             <p className="mb-2">
-              "나의 재물운은 어떨까?"
+              {dictionary.home.question_wealth}
               <br />
-              "나의 타고난 성향은 무엇일까?"
+              {dictionary.home.question_personality}
             </p>
             <p className="font-bold text-gray-900">
-              AI가 관상학과 심리학을 기반으로
+              {dictionary.home.feature_desc_1}
               <br />
-              객관적인 팩트만 전달합니다.
+              {dictionary.home.feature_desc_2}
             </p>
             <p className="mt-2 text-xs text-gray-400">
-              *과학적인 분석을 지향합니다.
+              {dictionary.home.scientific_note}
             </p>
           </div>
         </motion.div>
@@ -97,17 +115,17 @@ function LandingContent() {
           className="bg-red-600 hover:bg-red-700 shadow-lg shadow-red-500/30"
           onClick={() => setIsOpen(true)}
         >
-          진실 확인하기 (무료)
+          {dictionary.home.cta}
         </Button>
         <p className="mt-4 text-center text-xs text-gray-400">
-          이미 32,402명이 팩폭을 당했습니다.
+          {dictionary.home.participants_count}
         </p>
       </footer>
 
       <BottomSheet
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        title="무엇을 알고 싶으신가요?"
+        title={dictionary.home.modal_title}
       >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +135,7 @@ function LandingContent() {
             >
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-400">
-                  당신의 고민이나 욕망을 10자 이상 구체적으로 적어주세요
+                  {dictionary.home.input_label}
                 </label>
                 <div className="relative">
                   <textarea
@@ -127,7 +145,7 @@ function LandingContent() {
                         setDesire(e.target.value);
                       }
                     }}
-                    placeholder="예: 저는 30대 초반 직장인인데, 언제쯤 경제적 자유를 얻을 수 있을까요? 그리고 제 인연은 언제 나타날까요? 구체적으로 알고 싶습니다."
+                    placeholder={dictionary.home.input_placeholder}
                     className="w-full rounded-2xl border border-gray-200 bg-gray-50 p-4 text-base text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 min-h-[120px] resize-none"
                   />
                   <div className="absolute bottom-3 right-3 text-xs text-gray-400 font-medium">
@@ -135,7 +153,7 @@ function LandingContent() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 ml-1">
-                  *구체적으로 적을수록 AI가 더 정확하게 분석합니다.
+                  {dictionary.home.input_hint}
                 </p>
               </div>
 
@@ -146,7 +164,7 @@ function LandingContent() {
                 onClick={handleStart}
                 className="shadow-lg shadow-blue-500/30"
               >
-                무료로 관상 분석하기
+                {dictionary.home.start_button}
               </Button>
             </motion.div>
       </BottomSheet>
@@ -154,10 +172,10 @@ function LandingContent() {
   );
 }
 
-export default function LandingPage() {
+export default function LandingClient({ dictionary }: { dictionary: Dictionary }) {
   return (
     <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-white">Loading...</div>}>
-      <LandingContent />
+      <LandingContent dictionary={dictionary} />
     </Suspense>
   );
 }

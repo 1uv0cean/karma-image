@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "title": "K-Face Reading | AI Fact Physiognomy Analysis",
+    "description": "Chillingly accurate AI physiognomy analysis. Face the truth and destiny hidden in your face. 300-character detailed counseling and cold-hearted advice.",
+    "keywords": "Physiognomy, AI Physiognomy, Face Analysis, Fortune Telling, Saju, K-Face Reading, Korean Fortune Telling, Fact Bomb"
+  },
+  "home": {
+    "title": "K-Face Reading",
+    "subtitle": "AI Fact Physiognomy",
+    "description": "Face the cruel truth written on your face.",
+    "cta": "Start Analysis",
+    "question_wealth": "\"How is my wealth luck?\"",
+    "question_personality": "\"What is my innate nature?\"",
+    "feature_desc_1": "Based on physiognomy and psychology,",
+    "feature_desc_2": "AI delivers only objective facts.",
+    "scientific_note": "*Aiming for scientific analysis.",
+    "participants_count": "32,402 people have already faced the truth.",
+    "modal_title": "What do you want to know?",
+    "input_label": "Please write your concerns or desires in detail (10+ chars)",
+    "input_placeholder": "Ex: I'm an office worker in my early 30s. When will I achieve financial freedom? And when will I meet my soulmate? I want to know specifically.",
+    "input_hint": "*The more specific you are, the more accurate the AI analysis will be.",
+    "start_button": "Analyze Face for Free"
+  },
+  "scan": {
+    "title": "Are you ready to face the truth?",
+    "subtitle": "AI finds the traces of desire hidden in your features.",
+    "upload_text": "Touch to upload photo",
+    "cta_disabled": "Please select a photo",
+    "cta_enabled": "Meet another me inside me",
+    "disclaimer": "Photos are permanently deleted immediately after analysis."
+  },
+  "analysis": {
+    "messages": [
+      "Analyzing your concerns in depth...",
+      "Scanning the traces of destiny in your features...",
+      "Comparing physiognomy data with your question...",
+      "Calculating your potential and future...",
+      "Soon, truthful advice for you will be revealed."
+    ],
+    "error": "An error occurred during analysis. Please try again."
+  },
+  "result": {
+    "header": "K-Face Reading Result",
+    "analyzing": "Analyzing...",
+    "calculating_score": "Calculating score...",
+    "wealth_level": "Wealth Level",
+    "social_level": "Social Level",
+    "locked_title": "Detailed analysis is locked",
+    "locked_desc": "Invite 3 friends to unlock",
+    "personality": "Personality & Temperament",
+    "wealth": "Wealth Luck Analysis",
+    "love": "Love & Affection",
+    "advice": "Advice for Improvement",
+    "default_content": "Analysis content will be displayed here.",
+    "mission_title": "Friend Invitation Mission",
+    "mission_required": "Required",
+    "mission_desc": "If 3 friends enter through your shared link, <br/>all results will be unlocked immediately.",
+    "current_achievement": "Current Achievement",
+    "people": "people",
+    "copy_link": "Copy Invitation Link",
+    "copy_link_toast": "Invitation link copied!",
+    "share_note": "*Automatically counted when a friend clicks the link.",
+    "share_button": "Share",
+    "retry_button": "Try Again"
+  },
+  "quiz": {
+    "header": "Physiognomy Test",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What is your approach when making important decisions?",
+        "options": [
+          { "text": "Rely on thorough analysis and data", "value": "logical" },
+          { "text": "Trust intuition and feelings", "value": "intuitive" },
+          { "text": "Seek advice from people around you", "value": "social" },
+          { "text": "Act first and deal with it later", "value": "impulsive" }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "What value do you consider most important?",
+        "options": [
+          { "text": "Financial freedom and wealth", "value": "wealth" },
+          { "text": "Social status and honor", "value": "honor" },
+          { "text": "Happiness of family and lover", "value": "love" },
+          { "text": "Personal time and self-realization", "value": "self" }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "How do you react when stressed?",
+        "options": [
+          { "text": "Spend time alone to cool down", "value": "introvert" },
+          { "text": "Meet friends and chat", "value": "extrovert" },
+          { "text": "Relieve with exercise or activity", "value": "active" },
+          { "text": "Relieve with shopping or eating", "value": "consumer" }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "When you meet a stranger?",
+        "options": [
+          { "text": "Approach and talk first", "value": "outgoing" },
+          { "text": "Wait for them to talk", "value": "passive" },
+          { "text": "Observe with caution", "value": "cautious" },
+          { "text": "Mingle appropriately", "value": "adaptable" }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Your spending habits?",
+        "options": [
+          { "text": "Save thoroughly for the future", "value": "saver" },
+          { "text": "Spend for current enjoyment", "value": "spender" },
+          { "text": "Carefully consider cost-effectiveness", "value": "pragmatic" },
+          { "text": "Impulsive buying due to mood", "value": "emotional" }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Your attitude in conflict situations?",
+        "options": [
+          { "text": "Solve logically", "value": "confrontational" },
+          { "text": "Avoid it first", "value": "avoidant" },
+          { "text": "Accommodate the other person's mood", "value": "accommodating" },
+          { "text": "Request third-party mediation", "value": "mediator" }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Your ideal future?",
+        "options": [
+          { "text": "Free life without interference", "value": "freedom" },
+          { "text": "Life respected by many", "value": "respect" },
+          { "text": "Peaceful life with loved ones", "value": "peace" },
+          { "text": "Influential life changing the world", "value": "impact" }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Your work style?",
+        "options": [
+          { "text": "Handle meticulously as planned", "value": "planner" },
+          { "text": "Deal flexibly as needed", "value": "flexible" },
+          { "text": "Lead the team as a leader", "value": "leader" },
+          { "text": "Silently do my own work", "value": "follower" }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "What do you fear most?",
+        "options": [
+          { "text": "Losing what I have due to failure", "value": "loss" },
+          { "text": "Being criticized by people", "value": "criticism" },
+          { "text": "Being alone", "value": "isolation" },
+          { "text": "Stagnation without change", "value": "stagnation" }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "What do you want to know from this test?",
+        "options": [
+          { "text": "My innate destiny and wealth luck", "value": "fate" },
+          { "text": "My personality pros/cons and improvements", "value": "personality" },
+          { "text": "My dating style and compatibility", "value": "compatibility" },
+          { "text": "Things to be careful about in the future", "value": "advice" }
+        ]
+      }
+    ]
+  }
+}

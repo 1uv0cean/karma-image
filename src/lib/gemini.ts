@@ -26,10 +26,13 @@ export async function analyzeFaceAndSoul(imageBase64: string, quizResults: strin
     User's Specific Question/Desire: "${userDesire}"
     
     INSTRUCTION: 
-    1. The user has provided a specific worry or question above. Address this with COLD HARD FACTS based on their physiognomy.
-    2. Do NOT sugarcoat or give vague comforting advice. Be brutally honest about their strengths and fatal weaknesses.
-    3. Analyze specific facial features (eyes, nose, mouth, jaw) to back up your claims.
-    4. **CRITICAL**: The \`user_question_answer\` field MUST directly and specifically answer the user's question/desire. Do not give generic advice here.
+    1. **FIRST, check if there is a clear human face in the image.**
+    2. If NO face is detected, or if the face is too blurry/obscured to analyze, output ONLY this JSON: { "error": "no_face" }
+    3. If a face IS detected, proceed with the analysis below.
+    4. The user has provided a specific worry or question above. Address this with COLD HARD FACTS based on their physiognomy.
+    5. Do NOT sugarcoat or give vague comforting advice. Be brutally honest about their strengths and fatal weaknesses.
+    6. Analyze specific facial features (eyes, nose, mouth, jaw) to back up your claims.
+    7. **CRITICAL**: The \`user_question_answer\` field MUST directly and specifically answer the user's question/desire. Do not give generic advice here.
     
     IMPORTANT: All text fields in the JSON output MUST be in ${targetLanguage}.
     

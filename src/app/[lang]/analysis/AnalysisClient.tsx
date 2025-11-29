@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Dictionary = {
   analysis: {
     messages: string[];
     error: string;
+    no_face_error: string;
   };
 };
 
@@ -16,9 +17,13 @@ export default function AnalysisClient({ dictionary, lang }: { dictionary: Dicti
   const router = useRouter();
   const [messageIndex, setMessageIndex] = useState(0);
   const messages = dictionary.analysis.messages;
+  const hasAnalyzed = useRef(false);
 
   useEffect(() => {
     const analyze = async () => {
+      if (hasAnalyzed.current) return;
+      hasAnalyzed.current = true;
+
       try {
         const image = localStorage.getItem("userImage");
         // Quiz removed, passing empty array
@@ -37,7 +42,15 @@ export default function AnalysisClient({ dictionary, lang }: { dictionary: Dicti
           body: JSON.stringify({ image, quizResults, userDesire, lang }),
         });
 
-        if (!response.ok) throw new Error("Analysis failed");
+        if (!response.ok) {
+          const errorData = await response.json();
+          if (response.status === 422 && errorData.error === "no_face") {
+            alert(dictionary.analysis.no_face_error);
+            router.push(`/${lang}/scan`);
+            return;
+          }
+          throw new Error("Analysis failed");
+        }
 
         const data = await response.json();
         const resultWithLang = { ...data, lang };

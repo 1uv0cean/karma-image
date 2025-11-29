@@ -15,6 +15,13 @@ export async function POST(req: NextRequest) {
 
     const analysis = await analyzeFaceAndSoul(image, quizResults, userDesire || "General Fortune", lang || "ko");
     
+    if (analysis.error === "no_face") {
+      return NextResponse.json(
+        { error: "no_face" },
+        { status: 422 }
+      );
+    }
+
     // Image generation removed as per new requirements
     const generatedImage = null;
 

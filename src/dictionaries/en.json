@@ -37,7 +37,8 @@
       "Calculating your potential and future...",
       "Soon, truthful advice for you will be revealed."
     ],
-    "error": "An error occurred during analysis. Please try again."
+    "error": "An error occurred during analysis. Please try again.",
+    "no_face_error": "Cannot identify a face. Please try again with a clearer photo."
   },
   "result": {
     "header": "K-Face Reading Result",

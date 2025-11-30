@@ -1,5 +1,7 @@
 "use client";
 
+import { AdUnit } from "@/components/AdUnit";
+
 import { Button } from "@/components/ui/Button";
 import { Header } from "@/components/ui/Header";
 import { ProgressBar } from "@/components/ui/ProgressBar";
@@ -103,6 +105,11 @@ export default function QuizClient({ dictionary, lang }: { dictionary: Dictionar
             </div>
           </motion.div>
         </AnimatePresence>
+        
+        {/* Ad Unit */}
+        <div className="mt-8 w-full max-w-md">
+          <AdUnit />
+        </div>
       </main>
     </div>
   );

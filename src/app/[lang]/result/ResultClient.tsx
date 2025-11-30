@@ -1,5 +1,7 @@
 "use client";
 
+import { AdUnit } from "@/components/AdUnit";
+
 import { Button } from "@/components/ui/Button";
 import { Header } from "@/components/ui/Header";
 import { AnimatePresence, motion } from "framer-motion";
@@ -364,6 +366,11 @@ export default function ResultClient({ dictionary, lang }: { dictionary: Diction
               </Button>
             </>
           )}
+          
+          {/* Ad Unit */}
+          <div className="pt-4">
+            <AdUnit />
+          </div>
         </div>
       </main>
     </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { AdUnit } from "@/components/AdUnit";
+
 import { Header } from "@/components/ui/Header";
 import { motion } from "framer-motion";
 import { Camera, ChevronLeft } from "lucide-react";
@@ -189,6 +191,11 @@ export default function ScanClient({ dictionary, lang }: { dictionary: Dictionar
           <p className="text-center text-xs text-gray-400">
             {dictionary.scan.disclaimer}
           </p>
+
+          {/* Ad Unit */}
+          <div className="pt-4">
+            <AdUnit />
+          </div>
         </div>
       </main>
     </div>
